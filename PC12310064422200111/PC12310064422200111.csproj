@@ -24,4 +24,8 @@
     <ProjectReference Include="..\PC1.CORE\PC1.CORE.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PC1.CORE\PC1.CORE.csproj" />
+  </ItemGroup>
+
 </Project>
