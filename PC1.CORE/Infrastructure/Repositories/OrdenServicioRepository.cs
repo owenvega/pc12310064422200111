@@ -6,9 +6,10 @@ using System.Linq;
 using PC1.CORE.Core.Entities;
 using PC1.CORE.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using PC1.CORE.Core.Interfaces;
 namespace PC1.CORE.Infrastructure.Repositories
 {
-    public class OrdenServicioRepository
+    public class OrdenServicioRepository : IOrdenServicioRepository
     {
         private readonly TallerMecanicoDbContext _context;
 
@@ -35,7 +36,7 @@ namespace PC1.CORE.Infrastructure.Repositories
                 .FirstOrDefaultAsync(os => os.Id == id);
 
         }
-//a
+        //a
 
         public async Task<OrdenServicio> createOrdenServicio(OrdenServicio ordenServicio)
         {
@@ -115,7 +116,7 @@ namespace PC1.CORE.Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
-//a
+
 
     }
 }
