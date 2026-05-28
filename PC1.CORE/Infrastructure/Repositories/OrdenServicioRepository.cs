@@ -35,6 +35,7 @@ namespace PC1.CORE.Infrastructure.Repositories
                 .FirstOrDefaultAsync(os => os.Id == id);
 
         }
+//a
 
         public async Task<OrdenServicio> createOrdenServicio(OrdenServicio ordenServicio)
         {
