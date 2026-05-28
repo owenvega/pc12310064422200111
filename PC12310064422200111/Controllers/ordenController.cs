@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PC1.CORE.Core.Entities;
-using PC1.CORE.Infrastructure.Data;
+using PC1.CORE.Core.DTOs;
+using PC1.CORE.Core.Interfaces;
 
 namespace PC12310064422200111.Controllers
 {
@@ -9,38 +8,38 @@ namespace PC12310064422200111.Controllers
     [ApiController]
     public class OrdenController : ControllerBase
     {
-        private readonly TallerMecanicoDbContext _context;
+        private readonly IOrdenServicioService _service;
 
-        public OrdenController(TallerMecanicoDbContext context)
+        public OrdenController(IOrdenServicioService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: api/Orden
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<OrdenServicio>>> GetOrdenes()
+        public async Task<ActionResult<IEnumerable<OrdenServicioListDTO>>> GetOrdenes()
         {
-            return await _context.OrdenServicio.ToListAsync();
+            var ordenes = await _service.GetAll();
+            return Ok(ordenes);
         }
 
         // GET: api/Orden/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrdenServicio>> GetOrden(int id)
+        public async Task<ActionResult<OrdenServicioDTO>> GetOrden(int id)
         {
-            var orden = await _context.OrdenServicio.FindAsync(id);
+            var orden = await _service.GetById(id);
 
             if (orden == null)
                 return NotFound();
 
-            return orden;
+            return Ok(orden);
         }
 
         // POST: api/Orden
         [HttpPost]
-        public async Task<ActionResult<OrdenServicio>> PostOrden(OrdenServicio orden)
+        public async Task<ActionResult<OrdenServicioDTO>> PostOrden(CreateOrdenServicioDTO dto)
         {
-            _context.OrdenServicio.Add(orden);
-            await _context.SaveChangesAsync();
+            var orden = await _service.Create(dto);
 
             return CreatedAtAction(
                 nameof(GetOrden),
@@ -50,42 +49,28 @@ namespace PC12310064422200111.Controllers
 
         // PUT: api/Orden/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrden(int id, OrdenServicio orden)
+        public async Task<ActionResult<OrdenServicioDTO>> PutOrden(
+            int id,
+            UpdateOrdenServicioDTO dto)
         {
-            if (id != orden.Id)
-                return BadRequest();
+            var orden = await _service.Update(id, dto);
 
-            _context.Entry(orden).State = EntityState.Modified;
+            if (orden == null)
+                return NotFound();
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.OrdenServicio.Any(o => o.Id == id))
-                    return NotFound();
-
-                throw;
-            }
-
-            return NoContent();
+            return Ok(orden);
         }
 
         // DELETE: api/Orden/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrden(int id)
         {
-            var orden = await _context.OrdenServicio.FindAsync(id);
+            var eliminado = await _service.Delete(id);
 
-            if (orden == null)
+            if (!eliminado)
                 return NotFound();
-
-            _context.OrdenServicio.Remove(orden);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }
     }
 }
-ayudame a acambiarlo entonces
