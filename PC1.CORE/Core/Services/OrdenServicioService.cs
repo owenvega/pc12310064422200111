@@ -13,7 +13,7 @@ namespace PC1.CORE.Core.Services
 {
     public class OrdenServicioService : IOrdenServicioService
     {
-
+        // Inyección de dependencias del repositorio
         private readonly IOrdenServicioRepository _repository;
 
         public OrdenServicioService(IOrdenServicioRepository repository)
