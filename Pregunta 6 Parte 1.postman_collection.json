@@ -1,0 +1,102 @@
+{
+  "info": {
+    "_postman_id": "09161587-1614-4b14-b19c-ba2fb4c739b0",
+    "name": "Pregunta 5",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54272556"
+  },
+  "item": [
+    {
+      "name": "Post Orden",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"descripcionProblema\": \"El motor presenta un ruido extraño al acelerar y el auto pierde potencia en subidas.\",\r\n  \"costoEstimado\": 450.50,\r\n  \"vehiculoId\": 1,\r\n  \"tipoServicioId\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5003/api/orden",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5003",
+          "path": [
+            "api",
+            "orden"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Put Orden",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": 5, \r\n  \"fechaIngreso\": \"2026-05-28T19:00:00\",\r\n  \"descripcionProblema\": \"El motor ya fue revisado, se detectó fallo en las válvulas y requiere cambio de piezas.\",\r\n  \"costoEstimado\": 850.00,\r\n  \"estado\": \"En Proceso\",\r\n  \"vehiculoId\": 1,\r\n  \"tipoServicioId\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5003/api/orden/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5003",
+          "path": [
+            "api",
+            "orden",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Orden",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": 1,\r\n  \"fechaIngreso\": \"2026-05-28T19:00:00\",\r\n  \"descripcionProblema\": \"El motor ya fue revisado, se detectó fallo en las válvulas y requiere cambio de piezas.\",\r\n  \"costoEstimado\": 850.00,\r\n  \"estado\": \"En Proceso\",\r\n  \"vehiculoId\": 1,\r\n  \"tipoServicioId\": 2\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5003/api/orden/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5003",
+          "path": [
+            "api",
+            "orden",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
