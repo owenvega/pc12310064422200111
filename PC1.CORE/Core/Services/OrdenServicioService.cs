@@ -7,7 +7,6 @@ using PC1.CORE.Core.Entities;
 using PC1.CORE.Core.DTOs;
 using PC1.CORE.Core.Interfaces;
 using Microsoft.Identity.Client;
-using PC1.CORE.Infrastructure.Repositories;
 using PC1.CORE.Infrastructure.Data;
 
 namespace PC1.CORE.Core.Services
